@@ -24,7 +24,7 @@ MIT
 Github branching
 
 ## Tests
-N/A
+API tests ran with Insomnia.
 
 ## Questions
 derekjmedrano@gmail.com
