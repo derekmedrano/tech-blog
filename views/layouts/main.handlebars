@@ -14,13 +14,27 @@
       Sign up for FREE
     </h1>
   </header>
+
+  <div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      {{#if loggedIn}}
+      <button id="logout">
+        Log Out
+      </button>
+      {{else}}
+      <a href="/login">Login</a>
+      {{/if}}
+    </nav>
+  </div>
   <main class="container container-fluid mt-5">
     <!-- Render the contents of the sub layout here -->
     {{{ body }}}
   </main>
-  <footer>
-      
-  </footer>
+  {{#if loggedIn}}
+  <script src="./js/logout"></script>
+  {{/if}}
 </body>
 
 </html>
