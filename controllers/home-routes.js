@@ -3,7 +3,7 @@ const { User, Comment, Post } = require('../models');
 
 router.get('/', async (req, res) => {
     try {
-      const dbPostData = await Post.findAll({
+      const postData = await Post.findAll({
         include: [
           {
             model: Comment
@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         ],
       });
   
-      const posts = dbPostData.map((post) =>
+      const posts = postData.map((post) =>
         post.get({ plain: true })
       );
       res.render('homepage', {
