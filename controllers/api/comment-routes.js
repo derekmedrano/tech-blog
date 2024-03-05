@@ -51,7 +51,7 @@ router.put("/:id", withAuth, (req, res) => {
     )
         .then((commentData) => {
             if (!commentData) {
-                res.status(404).json({ message: "No comment exists with this id!" });
+                res.status(404).json({ message: "No comment with this id exists" });
                 return;
             }
             res.json(commentData);
@@ -62,3 +62,23 @@ router.put("/:id", withAuth, (req, res) => {
         });
 });
 
+router.delete("/:id", withAuth, (req, res) => {
+    Comment.destroy({
+        where: {
+            id: req.params.id,
+        },
+    })
+        .then((commentData) => {
+            if (!commentData) {
+                res.status(404).json({ message: "No comment with this id exists" });
+                return;
+            }
+            res.json(commentData);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
+module.exports = router;
