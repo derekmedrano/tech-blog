@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
 
   router.get('/post/:id', async (req, res) => {
     try {
-      const dbPostData = await Post.findByPk(req.params.id, {
+      const postData = await Post.findByPk(req.params.id, {
         include: [
           {
             model: Comment
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
         ],
       });
   
-      const post = dbPostData.get({ plain: true });
+      const post = postData.get({ plain: true });
       res.render('post', { post, loggedIn: req.session.loggedIn });
     } catch (err) {
       console.log(err);
