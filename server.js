@@ -1,11 +1,12 @@
 // required packages
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const expHb = require('express-handlebars'); // expHb >>> expressHandlebars
 const routes = require('./controllers');
 
 //sequelize and session imported
-const sequelize = require('sequelize');
+const sequelize = require('./config/connection');
 const sessionStore = require('connect-session-sequelize')(session.Store);
 
 //allows express to be used by server
@@ -28,7 +29,7 @@ const sess = {
 app.use(session(sess));
 
 //allows handlebars for use by server
-const hb = expHb.create();
+const hbs = expHb.create();
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
@@ -46,4 +47,6 @@ app.use(routes);
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log(`Now listening on http://localhost:${PORT}!`));
 });
+
+
 
